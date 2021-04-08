@@ -17,20 +17,21 @@ int main () {
   }
 
   for (int i = 3; i < NUM_SAMPLES; i++){
-    golden_y[i] = h[0] * x[i  ] +
-                  h[1] * x[i-1] +
-                  h[2] * x[i-2] +
-                  h[3] * x[i-3] ;
+    golden_y[i] = h[0] * x[i-3] +
+                  h[1] * x[i-2] +
+                  h[2] * x[i-1] +
+                  h[3] * x[i-0] ;
   }
 
-
   for (int i = 0; i < NUM_SAMPLES; i++){
-	fir_filter (x+i, h, y+i);
-	cout << i << ": " << x[i] << ", " << y[i] << ", " << golden_y[i] << endl;
+	  fir_filter_systolic (x+i, h, y+i);
+  }
 
-    if (i >= 3 && y[i] != golden_y[i]){
-    	cout << "FAIL!!!" << endl;
-    	exit(1);
+  for (int i = 9; i < NUM_SAMPLES; i++){
+
+	  if (y[i] != golden_y[i-6]){
+      cout << "FAIL!!!" << endl;
+      exit(1);
     }
   }
 

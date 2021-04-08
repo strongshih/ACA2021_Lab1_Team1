@@ -1,6 +1,6 @@
 template<typename T0, typename T1, typename T2>
   class pe_class{
-  private:
+  public:
     T0 x;
     T2 y0;
     T2 y1;

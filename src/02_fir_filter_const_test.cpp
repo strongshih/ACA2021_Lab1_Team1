@@ -8,7 +8,7 @@ using namespace std;
 
 int main () { 
   ap_fixed<8,1> x[NUM_SAMPLES];              //The input x
-  ap_fixed<8,1> h[4] = {0.1, 0.2, 0.3, 0.4}; //The coefficient
+  const ap_fixed<8,1> h[4] = {0.30011, 0.90032, 0.90032, 0.30011}; //The const coefficient
   ap_fixed<19,4> y[NUM_SAMPLES];             //The calculated result y
   ap_fixed<19,4> golden_y[NUM_SAMPLES];      //The correct result y
 
@@ -25,7 +25,7 @@ int main () {
 
 
   for (int i = 0; i < NUM_SAMPLES; i++){
-	fir_filter (x+i, h, y+i);
+	fir_filter_const (x+i, y+i);
 	cout << i << ": " << x[i] << ", " << y[i] << ", " << golden_y[i] << endl;
 
     if (i >= 3 && y[i] != golden_y[i]){

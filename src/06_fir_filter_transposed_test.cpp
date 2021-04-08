@@ -25,7 +25,7 @@ int main () {
 
 
   for (int i = 0; i < NUM_SAMPLES; i++){
-	fir_filter (x+i, h, y+i);
+	fir_filter_transposed (x+i, h, y+i);
 	cout << i << ": " << x[i] << ", " << y[i] << ", " << golden_y[i] << endl;
 
     if (i >= 3 && y[i] != golden_y[i]){
